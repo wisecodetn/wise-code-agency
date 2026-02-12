@@ -18,13 +18,13 @@ const roboto = Roboto({
 export const metadata = {
   title: {
     absolute: '',
-    default: 'Agenko - Creative Digital Agency NextJS Template',
-    template: '%s | Agenko - Creative Digital Agency NextJS Template',
+    default: 'Wise Code - Your Digital Partner',
+    template: '%s | Wise Code - Your Digital Partner',
   },
-  description: 'Agenko - Creative Digital Agency NextJS Template',
+  description: 'Wise Code - Your Digital Partner',
   openGraph: {
-    title: 'Agenko - Creative Digital Agency NextJS Template',
-    description: 'Agenko - Creative Digital Agency NextJS Template',
+    title: 'Wise Code - Your Digital Partner',
+    description: 'Wise Code - Your Digital Partner',
   },
 };
 
@@ -32,7 +32,7 @@ export default function RootLayout({ children } : any ) {
   return (
     <html lang="en">
       <head>
-        <meta name="author" content="Themeservices" />
+        <meta name="author" content="Wise Code" />
         <link rel="icon" href="/favicon.png" sizes="any" />
       </head>
       <body className={`${source_sans.variable} ${roboto.variable}`}>
