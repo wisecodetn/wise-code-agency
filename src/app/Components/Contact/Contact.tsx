@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import React from 'react';
+import { dataconfig } from '../../dataconfig';
 
 const Contact = () => {
     return (
@@ -13,17 +14,16 @@ const Contact = () => {
                                 <div className="shape"><span><Image src="/assets/images/pages/shape/world.png" alt="img" width={306} height={647}   /></span></div>
                                 <ul>
                                     <li>
-                                        <div className="phone"><a href="tel:+1(555)123-4567">+1 (555) 123-4567</a></div>
+                                        <div className="phone"><a href={`tel:${dataconfig.contact.phone}`}>{dataconfig.contact.phone}</a></div>
                                     </li>
                                     <li>
                                         
                                         <div className="agenko-info-box">
                                             <div className="content">
                                                 <h3>Address</h3>
-                                                <p>6801 Hollywood Blvd, Los Angeles, 
-                                                    CA 90028</p>
-                                                <p>6801 Hollywood Blvd, Los Angeles, 
-                                                        CA 90028</p>
+                                                <p>ST. Badiaa Zaman Hamdhani, Khzema, Sousse, 4051, Tunisia</p>
+                                                {/* <p>6801 Hollywood Blvd, Los Angeles, 
+                                                        CA 90028</p> */}
                                             </div>
                                         </div>
                                     </li>
@@ -32,8 +32,8 @@ const Contact = () => {
                                         <div className="agenko-info-box">
                                             <div className="content">
                                                 <h3>Email</h3>
-                                                <p><a href="mailto:Info@agenko45.com">Info@agenko45.Com</a></p>
-                                                <p><a href="mailto:Info@agenko45.com">Info@agenko45.Com</a></p>
+                                                <p><a href={`mailto:${dataconfig.contact.email}`}>{dataconfig.contact.email}</a></p>
+                                                {/* <p><a href="mailto:wise.code.tn@gmail.com">wise.code.tn@gmail.com</a></p> */}
                                             </div>
                                         </div>
                                     </li>
@@ -43,10 +43,10 @@ const Contact = () => {
                                             <div className="content">
                                                 <h3>Follow</h3>
                                                 <div className="social-link">
-                                                    <a href="#"><i className="bi bi-facebook"></i></a>
-                                                    <a href="#"><i className="bi bi-instagram"></i></a>
-                                                    <a href="#"><i className="bi bi-linkedin"></i></a>
-                                                    <a href="#"><i className="bi bi-twitter-x"></i></a>
+                                                    {dataconfig.contact.facebook && <a href={dataconfig.contact.facebook}><i className="bi bi-facebook"></i></a>}
+                                                    {dataconfig.contact.instagram && <a href={dataconfig.contact.instagram}><i className="bi bi-instagram"></i></a>}
+                                                    {dataconfig.contact.linkedin && <a target="_blank" href={dataconfig.contact.linkedin}><i className="bi bi-linkedin"></i></a>}
+                                                    {dataconfig.contact.twitter && <a href={dataconfig.contact.twitter}><i className="bi bi-twitter-x"></i></a>}
                                                 </div>
                                             </div>
                                         </div>
@@ -100,7 +100,7 @@ const Contact = () => {
             <section className="agenko-map">
                 
                 <div className="map-box" data-aos="fade-up" data-aos-duration="1300">
-                    <iframe src="https://maps.google.com/maps?q=new%20york&amp;t=&amp;z=13&amp;ie=UTF8&amp;iwloc=&amp;output=embed"></iframe>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1617.4206810516357!2d10.641737203016865!3d35.82836772596946!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1302755757d292fb%3A0x1326410c92835505!2s.!5e0!3m2!1sfr!2stn!4v1771105044477!5m2!1sfr!2stn"></iframe>
                 </div>
             </section>            
         </div>

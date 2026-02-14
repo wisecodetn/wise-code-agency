@@ -10,13 +10,13 @@ const WhoWeAre2 = () => {
                                     <div className="section-title mb-45 pf_fadeup">
                                         <span className="sub-title">How We Are</span>
                                         <h2>We are leading Innovative
-                                            marketing agency.</h2>
+                                            marketing & development agency.</h2>
                                     </div>
                                 </div>
                                 <div className="col-lg-6">
                                     
                                     <div className="text-box mb-40 pf_fadeup">
-                                        <p>Leading Innovation <span>marketing agency</span> We are a leading innovative marketing agency, specializing in creative solutions that drive business growth, enhance brand visibility.</p>
+                                        <p>Leading Innovation <span>marketing & development agency</span> We are a leading innovative marketing agency, specializing in creative solutions that drive business growth, enhance brand visibility.</p>
                                     </div>
                                 </div>
                             </div>

@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
+import { dataconfig } from '../../dataconfig';
 
 const Footer = () => {
     return (
@@ -21,7 +22,7 @@ const Footer = () => {
                                                  
                                                 <a href="#"> <Image src="/assets/images/creative-agency/logo/logo-main.png" alt="img" width={151} height={40}   /></a>
                                             </div>
-                                            <p>Agenko creative digital agency delivering innovate web Development marketing.</p>
+                                            <p>Wise Code creative digital agency delivering innovate web Development marketing.</p>
                                             <form>
                                                 <div className="form-group">
                                                     <input type="email" className="form_control" placeholder="Email Address" name="email" required />
@@ -37,12 +38,12 @@ const Footer = () => {
                                     <div className="footer-widget footer-contact-info-widget mb-40 pf_fadeup">
                                         <div className="footer-content mb-25">
                                             <h4 className="widget-title">Main Address</h4>
-                                            <p>6801 Hollywood Blvd, Los Angeles, CA 90028</p>
+                                            <p>{dataconfig?.contact?.address}</p>
                                         </div>
-                                        <div className="footer-content mb-25">
+                                        {/* <div className="footer-content mb-25">
                                             <h4 className="widget-title">Sub-Address</h4>
-                                            <p>200 Santa Monica Pier, Santa Monica, CA 90401</p>
-                                        </div>
+                                            <p>{dataconfig?.footer?.subAddress}</p>
+                                        </div> */}
                                     </div>
                                 </div>
                                 <div className="col-lg-5 col-md-12 col-sm-12">
@@ -83,7 +84,7 @@ const Footer = () => {
                                                         </div>
                                                         <div className="content">
                                                             <h6>Email</h6>
-                                                            <p><a href="mailto:info@agenko.com">info@agenko.com</a></p>
+                                                            <p><a href={`mailto:${dataconfig?.contact?.email}`}>{dataconfig?.contact?.email}</a></p>
                                                         </div>
                                                     </div>
                                                     <div className="agenko-iconic-box style-three">
@@ -92,7 +93,7 @@ const Footer = () => {
                                                         </div>
                                                         <div className="content">
                                                             <h6>Phone</h6>
-                                                            <p><a href="tel:+555-7659-9854">+555-7659-9854</a></p>
+                                                            <p><a href={`tel:${dataconfig?.contact?.phone}`}>{dataconfig?.contact?.phone}</a></p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -110,7 +111,7 @@ const Footer = () => {
                                 <div className="col-md-6">
                                    
                                     <div className="copyright-text">
-                                        <p>&copy; 2025 <span>Agenko</span> - All Rights Reserved.</p>
+                                        <p>&copy; 2026 <span>Wise Code</span> - All Rights Reserved.</p>
                                     </div>
                                 </div>
                                 <div className="col-md-6">
