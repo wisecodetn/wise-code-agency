@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://wise-code.tn/sitemap.xml
+Sitemap: https://wisecode.tn/sitemap.xml
 
 # Disallow specific paths if any
 # Disallow: /admin/

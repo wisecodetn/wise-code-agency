@@ -31,14 +31,14 @@ export const metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL('https://wise-code.tn'),
+  metadataBase: new URL('https://wisecode.tn'),
   alternates: {
     canonical: '/',
   },
   openGraph: {
     title: 'Wise Code - Digital Agency & Web Development Services',
     description: 'Leading digital agency in Tunisia offering web development, design, and digital marketing solutions to grow your business.',
-    url: 'https://wise-code.tn',
+    url: 'https://wisecode.tn',
     siteName: 'Wise Code',
     locale: 'en_US',
     type: 'website',
