@@ -10,11 +10,13 @@ import Faq1 from '../Components/Faq/Faq1';
 import Team2 from '../Components/Team/Team2';
 import Brand2 from '../Components/Brand/Brand2';
 import Blog2 from '../Components/Blog/Blog2';
+import HeroBanner1 from '../Components/HeroBanner/HeroBanner1';
+import HeroBanner3 from '../Components/HeroBanner/HeroBanner3';
 
 const page = () => {
     return (
         <div>
-            <HeroBanner2></HeroBanner2>
+            <HeroBanner3></HeroBanner3>
             <About1></About1>
             <Services2></Services2>
             <Project2></Project2>

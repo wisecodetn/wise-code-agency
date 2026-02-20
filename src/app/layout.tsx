@@ -18,13 +18,47 @@ const roboto = Roboto({
 export const metadata = {
   title: {
     absolute: '',
-    default: 'Wise Code - Your Digital Partner',
-    template: '%s | Wise Code - Your Digital Partner',
+    default: 'Wise Code - Digital Agency & Web Development Services',
+    template: '%s | Wise Code - Digital Agency Tunisia',
   },
-  description: 'Wise Code - Your Digital Partner',
+  description: 'Wise Code is a leading digital agency in Tunisia specializing in web development, design, e-commerce solutions, and digital marketing. Transform your business with our expert services.',
+  keywords: 'Wise Code, digital agency, web development, Tunisia, web design, e-commerce, digital marketing, SEO, branding, React, Next.js',
+  authors: [{ name: 'Wise Code' }],
+  creator: 'Wise Code',
+  publisher: 'Wise Code',
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  metadataBase: new URL('https://wise-code.tn'),
+  alternates: {
+    canonical: '/',
+  },
   openGraph: {
-    title: 'Wise Code - Your Digital Partner',
-    description: 'Wise Code - Your Digital Partner',
+    title: 'Wise Code - Digital Agency & Web Development Services',
+    description: 'Leading digital agency in Tunisia offering web development, design, and digital marketing solutions to grow your business.',
+    url: 'https://wise-code.tn',
+    siteName: 'Wise Code',
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Wise Code - Digital Agency Tunisia',
+    description: 'Expert web development and digital marketing services in Tunisia.',
+    creator: '@wise_code_tn',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
   },
 };
 
