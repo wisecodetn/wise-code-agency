@@ -4,10 +4,10 @@ import React from 'react';
 const Project2 = () => {
 
     const chooseContent = [
-        {img:'/assets/images/digital-agency/project/project1.jpg', title:'Medical Mobile Design & Development', cat1:'Mobile App', cat2:'UI/UX Design'},
-        {img:'/assets/images/digital-agency/project/project2.jpg', title:'Stacks Website Design & Coding', cat1:'Mobile App', cat2:'UI/UX Design'},
-        {img:'/assets/images/digital-agency/project/project3.jpg', title:'Financial & Wallet Website Design', cat1:'Mobile App', cat2:'UI/UX Design'},
-        {img:'/assets/images/digital-agency/project/project4.jpg', title:'Sales Management Mobile App Design', cat1:'Mobile App', cat2:'UI/UX Design'},
+        {img:'/assets/images/digital-agency/project/project1.jpg', title:'E-Commerce Platform Development', cat1:'Web Development', cat2:'E-Commerce'},
+        {img:'/assets/images/digital-agency/project/project2.jpg', title:'Corporate Website Redesign', cat1:'Web Design', cat2:'Branding'},
+        {img:'/assets/images/digital-agency/project/project3.jpg', title:'Digital Marketing Campaign', cat1:'Marketing', cat2:'SEO'},
+        {img:'/assets/images/digital-agency/project/project4.jpg', title:'Mobile Banking Application', cat1:'Mobile App', cat2:'Fintech'},
       ]; 
 
     return (
@@ -17,9 +17,8 @@ const Project2 = () => {
                 <div className="col-lg-7">
                     
                     <div className="section-title mb-60 pf_fadeup">
-                        <span className="sub-title">Our Work</span>
-                        <h2>Building Tomorrow Digital 
-                            Experiences Today</h2>
+                        <span className="sub-title">Our Portfolio</span>
+                        <h2>Our Recent Projects</h2>
                     </div>
                 </div>
                 <div className="col-lg-5">
@@ -38,7 +37,7 @@ const Project2 = () => {
                 <div key={i} className="col-lg-6">
                     <div className="agenko-project-item style-one mb-45 pf_fadeup">
                         <div className="thumbnail">
-                            <img src={item.img} alt="Project Image" />
+                            <img src={item.img} alt={`${item.title} - Wise Code Portfolio`} />
                             <div className="project-button">
                                 <Link href="/project/project-details"><i className="bi bi-plus-lg"></i></Link>
                             </div>

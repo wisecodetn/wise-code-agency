@@ -9,14 +9,13 @@ const Services2 = () => {
                                 <div className="col-lg-7">
                                     
                                     <div className="section-title mb-65 pf_fadeup">
-                                        <span className="sub-title">Our Services</span>
-                                        <h2>Building Tomorrow Digital 
-                                            Experiences Today</h2>
+                                        <span className="sub-title">Our Digital Services</span>
+                                        <h2>Web Development, Digital Marketing & E-Commerce Solutions</h2>
                                     </div>
                                 </div>
                                 <div className="col-lg-5">
                                     <div className="text-box mb-60 pf_fadeup">
-                                        <p>Creating cutting-edge digital experiences that blend innovation and functionality to meet the evolving needs of tomorrow’s businesses and users</p>
+                                        <p>Wise Code delivers comprehensive digital solutions including custom web development, strategic digital marketing, and scalable e-commerce platforms to accelerate your business growth and maximize online success.</p>
                                     </div>
                                 </div>
                             </div>
@@ -26,10 +25,10 @@ const Services2 = () => {
                                     <div className="agenko-card-item style-one mb-30 pf_fadeup">
                                         <div className="card-title">
                                             <div className="sn-number">01</div>
-                                            <h3 className="title">Website Development</h3>
+                                            <h3 className="title">Custom Web Development</h3>
                                         </div>
                                         <div className="content">
-                                            <p>Business and corporate <span>web dashboard</span> focuses on creating intuitive, data-driven interfaces that enhance decision-making, streamline processes.</p>
+                                            <p>Professional <span>custom web development</span> services creating responsive, fast-loading websites with modern frameworks like React and Next.js to enhance user experience and drive business growth.</p>
                                         </div>
                                         <div className="card-button">
                                             <Link href="/service/service-details" className="theme-btn style-one">
@@ -46,10 +45,10 @@ const Services2 = () => {
                                     <div className="agenko-card-item style-one mb-30 pf_fadeup">
                                         <div className="card-title">
                                             <div className="sn-number">02</div>
-                                            <h3 className="title">E-commerce Solutions</h3>
+                                            <h3 className="title">Digital Marketing & SEO</h3>
                                         </div>
                                         <div className="content">
-                                            <p>Comprehensive <span>e-commerce solutions</span> designed to optimize user experience, boost conversions, and streamline online transactions. Our tailored.</p>
+                                            <p>Strategic <span>digital marketing and SEO</span> solutions to increase your online visibility, drive targeted traffic, and improve search rankings with data-driven campaigns and conversion optimization.</p>
                                         </div>
                                         <div className="card-button">
                                             <Link href="/service/service-details" className="theme-btn style-one">
@@ -66,10 +65,10 @@ const Services2 = () => {
                                     <div className="agenko-card-item style-one mb-30 pf_fadeup">
                                         <div className="card-title">
                                             <div className="sn-number">03</div>
-                                            <h3 className="title">Branding & Identity Design</h3>
+                                            <h3 className="title">E-Commerce Development</h3>
                                         </div>
                                         <div className="content">
-                                            <p>Crafting <span>unique branding</span> and identity designs that reflect your brand’s values, build recognition, and create a lasting impression on audiences</p>
+                                            <p>Complete <span>e-commerce development</span> with secure payment gateways, inventory management, and user-friendly shopping experiences to boost online sales and customer retention.</p>
                                         </div>
                                         <div className="card-button">
                                             <Link href="/service/service-details" className="theme-btn style-one">
