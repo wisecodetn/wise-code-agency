@@ -1,14 +1,10 @@
 import Link from 'next/link';
 import React from 'react';
+import { projectsList } from '../../data/projects';
 
 const Project2 = () => {
 
-    const chooseContent = [
-        {img:'/assets/images/digital-agency/project/project1.jpg', title:'E-Commerce Platform Development', cat1:'Web Development', cat2:'E-Commerce'},
-        {img:'/assets/images/digital-agency/project/project2.jpg', title:'Corporate Website Redesign', cat1:'Web Design', cat2:'Branding'},
-        {img:'/assets/images/digital-agency/project/project3.jpg', title:'Digital Marketing Campaign', cat1:'Marketing', cat2:'SEO'},
-        {img:'/assets/images/digital-agency/project/project4.jpg', title:'Mobile Banking Application', cat1:'Mobile App', cat2:'Fintech'},
-      ]; 
+    
 
     return (
         <section className="agk-project pt-130 pb-80">
@@ -33,19 +29,20 @@ const Project2 = () => {
                 </div>
             </div>
             <div className="row">
-            {chooseContent.map((item, i) => (
+            {projectsList.slice(0,4).map((item, i) => (
                 <div key={i} className="col-lg-6">
                     <div className="agenko-project-item style-one mb-45 pf_fadeup">
                         <div className="thumbnail">
-                            <img src={item.img} alt={`${item.title} - Wise Code Portfolio`} />
+                            <img src={item.image} alt={`${item.title} - Wise Code Portfolio`} />
                             <div className="project-button">
                                 <Link href="/project/project-details"><i className="bi bi-plus-lg"></i></Link>
                             </div>
                         </div>
                         <div className="content">
                             <div className="project-categories">
-                                <a href="#">{item.cat1}</a>
-                                <a href="#">{item.cat2}</a>
+                                {item.tags.map((tag, index) => (
+                                    <a key={index} href="#">{tag}</a>
+                                ))}
                             </div>
                             <h4 className="title"><Link href="/project/project-details">{item.title}</Link></h4>
                         </div>
