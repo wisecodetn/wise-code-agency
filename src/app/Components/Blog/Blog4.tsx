@@ -1,46 +1,120 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
-const Blog4 = () => {
+interface Blog {
+  id: string;
+  title: string;
+  content: string;
+  image?: string;
+  author?: string;
+  date?: string;
+  comments?: number;
+  slug?: string;
+  excerpt?: string;
+}
 
-    const blogContent = [
-        {img:'/assets/images/pages/blog/blog1.jpg', title:'Medical mobile app design and development', content:'Creating user-friendly medical mobile apps with innovative designs and seamless.'},
-        {img:'/assets/images/pages/blog/blog2.jpg', title:'Sales management mobile app design solutions', content:'Creating user-friendly medical mobile apps with innovative designs and seamless.'},
-        {img:'/assets/images/pages/blog/blog3.jpg', title:'Financial and wallet website design services', content:'Creating user-friendly medical mobile apps with innovative designs and seamless.'},
-        {img:'/assets/images/pages/blog/blog4.jpg', title:'Sales Team Productivity Starts with Great App Design', content:'Creating user-friendly medical mobile apps with innovative designs and seamless.'},
-        {img:'/assets/images/pages/blog/blog5.jpg', title:'Optimizing Sales Workflows with Effective App UI/UX Design', content:'Creating user-friendly medical mobile apps with innovative designs and seamless.'},
-        {img:'/assets/images/pages/blog/blog6.jpg', title:'Boost Sales Efficiency with Smart Mobile App Design Strategies', content:'Creating user-friendly medical mobile apps with innovative designs and seamless.'},
-      ]; 
+interface Blog4Props {
+  blogs: Blog[];
+  loading: boolean;
+  error: string | null;
+}
 
+const Blog4: React.FC<Blog4Props> = ({ blogs, loading, error }) => {
+  const [blogsWithImages, setBlogsWithImages] = useState<Blog[]>([]);
 
+  useEffect(() => {
+    if (blogs && blogs.length > 0) {
+      const updatedBlogs = blogs.map((blog) => ({
+        ...blog,
+        image: `https://wise-code-agency.vercel.app${blog.image}`
+      }));
+      setBlogsWithImages(updatedBlogs);
+    }
+  }, [blogs]);
+
+  if (loading) {
     return (
-            <section className="agenko-blog-grid pt-130 pb-80">
-                <div className="container">
-                    <div className="row">
-                    {blogContent.map((item, i) => (
-                        <div key={i} className="col-xl-4 col-md-6 col-sm-12">
-                            <div className="agenko-blog-item style-four mb-40 pf_fadeup">
-                                <div className="post-thumbnail">
-                                <Image src={item.img} alt="img" width={414} height={323}   />
-                                </div>
-                                <div className="post-content">
-                                    <div className="post-meta">
-                                        <span><i className="bi bi-person"></i>Alex Mika</span>
-                                        <span><i className="bi bi-calendar-fill"></i>Dec12, 2024</span>
-                                        <span><i className="bi bi-chat"></i>5 Comment</span>
-                                    </div>
-                                    <h4 className="title"><Link href="/blog/blog-details">{item.title}</Link></h4>
-                                    <p>{item.content}</p>
-                                </div>
-                            </div>
-                        </div>
-                        ))} 
-                    </div>
-
-                </div>
-            </section>
+      <section className="agenko-blog-grid pt-130 pb-80">
+        <div className="container">
+          <div className="row">
+            <div className="col-12 text-center">
+              <div className="spinner-border text-primary" role="status">
+                <span className="visually-hidden">Loading...</span>
+              </div>
+              <p className="mt-3">Loading blogs...</p>
+            </div>
+          </div>
+        </div>
+      </section>
     );
+  }
+
+  if (error) {
+    return (
+      <section className="agenko-blog-grid pt-130 pb-80">
+        <div className="container">
+          <div className="row">
+            <div className="col-12 text-center">
+              <div className="alert alert-danger" role="alert">
+                {error}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  if (!blogsWithImages || blogsWithImages.length === 0) {
+    return (
+      <section className="agenko-blog-grid pt-130 pb-80">
+        <div className="container">
+          <div className="row">
+            <div className="col-12 text-center">
+              <p>No blogs available at the moment.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  return (
+    <section className="agenko-blog-grid pt-130 pb-80">
+      <div className="container">
+        <div className="row">
+          {blogsWithImages.map((blog) => (
+            <div key={blog.id} className="col-xl-4 col-md-6 col-sm-12">
+              <div className="agenko-blog-item style-four mb-40 pf_fadeup">
+                <div className="post-thumbnail">
+                  <Image 
+                    src={blog.image} 
+                    alt={blog.title} 
+                    width={414} 
+                    height={323} 
+                  />
+                </div>
+                <div className="post-content">
+                  <div className="post-meta">
+                    <span><i className="bi bi-person"></i>{blog.author || 'Wise Code'}</span>
+                    <span><i className="bi bi-calendar-fill"></i>{blog.date || new Date().toLocaleDateString()}</span>
+                    <span><i className="bi bi-chat"></i>{blog.comments || 0} Comments</span>
+                  </div>
+                  <h4 className="title">
+                    <Link href={`/blog/${blog.slug || blog.id}`}>
+                      {blog.title}
+                    </Link>
+                  </h4>
+                  <p>{blog.excerpt}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
 };
 
 export default Blog4;

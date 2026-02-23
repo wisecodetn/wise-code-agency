@@ -1,4 +1,15 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+const nextConfig = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'wise-code-agency.vercel.app',
+        port: '',
+        pathname: '/uploads/**',
+      },
+    ],
+  },
+};
 
 export default nextConfig;

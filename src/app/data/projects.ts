@@ -1,3 +1,5 @@
+import { title } from "process";
+
 export const projectsList = [
     {
         id: 1,
@@ -74,9 +76,19 @@ export const projectsList = [
         title: "Aurify",
         slug: "aurify",
         description: "Aurify is a platform for selling and managing insurance policies. It will come soon.",
-        image: "/assets/wise-code/project/aurify.jpg",
+        image: "/assets/wise-code/project/aurify.png",
         category: "Ecommerce",
         tags: ["Ecommerce", "ReactJS", "NextJS", "Node/Express"],
         link: "https://aurify.tn",
+    },
+    {
+        id: 9,
+        title: "Sirine Shopping",
+        slug: "sirine-shopping",
+        description: "Sirine Shopping is an ecommerce platforme for selling home decor and furniture.",
+        image: "/assets/wise-code/project/sirine-shopping.png",
+        category: "Ecommerce",
+        tags: ["Ecommerce", "Laravel"],
+        link: "https://sirine-shopping.tn"
     }
 ]

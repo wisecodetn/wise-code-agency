@@ -52,7 +52,7 @@ const Faq1 = () => {
                                     
                                     <div className="agk-image-box mb-50 pf_fadeup">
                                         <div className="agk-image">
-                                        <Image src="/assets/images/digital-agency/faq/faq1.jpg" alt="img" width={550} height={555}   />
+                                        <Image src="/assets/wise-code/home/faq.png" alt="Wise Code" title='Wise Code' width={550} height={555}   />
                                         </div>
                                     </div>
                                 </div>

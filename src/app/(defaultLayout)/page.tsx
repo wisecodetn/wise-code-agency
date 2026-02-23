@@ -19,7 +19,7 @@ const page = () => {
             <Project2></Project2>
             {/* <WhoWeAre></WhoWeAre> */}
             <Process2></Process2>
-            <Testimonial2></Testimonial2>
+            {/* <Testimonial2></Testimonial2> */}
             <Faq1></Faq1>
             {/* <Team2></Team2> */}
             {/* <Brand2></Brand2>   */}

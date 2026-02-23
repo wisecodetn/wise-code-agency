@@ -1,7 +1,25 @@
 import Image from 'next/image';
 import React from 'react';
 
-const BlogDetails = () => {
+interface Blog {
+  id: string;
+  title: string;
+  content: string;
+  image?: string;
+  author?: string;
+  date?: string;
+  comments?: number;
+  slug?: string;
+  excerpt?: string;
+  tags?: string[];
+  category?: string;
+}
+
+interface BlogDetailsProps {
+  blog: Blog;
+}
+
+const BlogDetails = ({ blog }: BlogDetailsProps) => {
     return (
             <section className="agenko-blog-detils pt-130 pb-100">
                 <div className="container">
@@ -12,22 +30,39 @@ const BlogDetails = () => {
                                 <div className="agenko-post-item pf_fadeup">
                                     <div className="main-post">
                                         <div className="post-thumbnail">
-                                        <Image src="/assets/images/pages/blog/blog-single1.jpg" alt="img" width={777} height={605}   />
+                                        <Image 
+                                            src={blog.image || '/assets/images/pages/blog/blog-single1.jpg'} 
+                                            alt={blog.title} 
+                                            width={777} 
+                                            height={605}  
+                                        />
                                         </div>
                                         <div className="post-content">
                                             <div className="post-meta">
-                                            <span><i className="bi bi-person"></i>Alex Mika</span>
-                                        <span><i className="bi bi-calendar-fill"></i>Dec12, 2024</span>
-                                        <span><i className="bi bi-chat"></i>5 Comment</span>
+                                            <span><i className="bi bi-person"></i>{blog.author || 'Wise Code Team'}</span>
+                                        <span><i className="bi bi-calendar-fill"></i>{blog.date || new Date().toLocaleDateString()}</span>
+                                        <span><i className="bi bi-chat"></i>{blog.comments || 0} Comments</span>
                                             </div>
-                                            <h4 className="post-title">Medical Mobile Design & Development </h4>
-                                            <p>Creating user-friendly medical mobile apps with innovative designs and seamless functionality to enhance healthcare accessibility and patient engagement. Designing and developing innovative medical mobile apps with user-friendly interfaces, advanced features, and secure functionality to enhance healthcare delivery, streamline processes, and improve patient engagement and satisfaction</p>
-                                            <p>A versatile template crafted to narrate the journey of your project, detailing its origins, inspirations, and key influences. Functionality to enhance healthcare delivery, streamline processes, and improve patient engagement and satisfaction</p>
+                                            <h4 className="post-title">{blog.title}</h4>
+                                            <div dangerouslySetInnerHTML={{ __html: blog.content }} />
+                                            <div className="row">
+                                                <div className="col-md-6">
+                                                    <div className="block-image mb-40">
+                                                    <Image src="/assets/images/pages/blog/blog-single2.jpg" alt="img" width={377} height={377}   />
+                                                    </div>
+                                                </div>
+                                                <div className="col-md-6">
+                                                    <div className="block-image mb-40">
+                                                    <Image src="/assets/images/pages/blog/blog-single3.jpg" alt="img" width={377} height={377}   />
+                                                    
+                                                    </div>
+                                                </div>
+                                            </div>
                                             <blockquote>
                                                 <div className="icon"><i className="flaticon-inverted-commas"></i></div>
-                                                <h4>Agenko Agency transformed our business with their innovative strategies and dedicated support. Their team understood </h4>
+                                                <h4>Wise Code Agency transformed our business with their innovative strategies and dedicated support. Their team understood </h4>
                                                 <div className="author-info">
-                                                    <h4>Mr. David Liam</h4>
+                                                    <h4>Client Testimonial</h4>
                                                     <h5>CEO & Founder</h5>
                                                 </div>
                                             </blockquote>
@@ -40,7 +75,7 @@ const BlogDetails = () => {
                                                 <div className="col-md-6">
                                                     <div className="block-image mb-40">
                                                     <Image src="/assets/images/pages/blog/blog-single3.jpg" alt="img" width={377} height={377}   />
-                                                       
+                                                    
                                                     </div>
                                                 </div>
                                             </div>
@@ -58,9 +93,9 @@ const BlogDetails = () => {
                                     <div className="entry-footer wow fadeInUp">
                                         <div className="tag-links">
                                             <span>Tag:</span>
-                                            <a href="#">Design</a>
-                                            <a href="#">Creative</a>
-                                            <a href="#">Agency</a>
+                                            {blog.tags?.map((tag, index) => (
+                                                <a key={index} href="#">{tag}</a>
+                                            )) || <a href="#">Design</a>}
                                         </div>
                                         <div className="social-share">
                                             <span>share:</span>
@@ -82,22 +117,8 @@ const BlogDetails = () => {
                                                 </div>
                                                 <div className="comment-wrap">
                                                     <div className="comment-author-content">
-                                                        <span className="author-name">Mr. David Liam</span>
-                                                        <p>Streamlining processes with an optimized workflow that enhances efficiency, fosters collaboration, and ensures seamless execution </p>
-                                                        <a href="#" className="reply">Reply</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div className="comment">
-                                                <div className="comment-avatar">
-                                                <Image src="/assets/images/pages/blog/comment2.jpg" alt="img" width={100} height={100}   />
-                                                </div>
-                                                <div className="comment-wrap">
-                                                    <div className="comment-author-content">
-                                                        <span className="author-name">Michel holder</span>
-                                                        <p>Streamlining processes with an optimized workflow that enhances efficiency, fosters collaboration, and ensures </p>
+                                                        <span className="author-name">Blog Reader</span>
+                                                        <p>Great article! Very informative and well-written.</p>
                                                         <a href="#" className="reply">Reply</a>
                                                     </div>
                                                 </div>
@@ -112,7 +133,7 @@ const BlogDetails = () => {
                                         <div className="row">
                                             <div className="col-lg-6">
                                                 <div className="form-group">
-                                                    <input type="text" className="form_control" placeholder="Enter Name" name="email"  />
+                                                    <input type="text" className="form_control" placeholder="Enter Name" name="name"  />
                                                 </div>
                                             </div>
                                             <div className="col-lg-6">

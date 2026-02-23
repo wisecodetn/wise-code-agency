@@ -29,7 +29,7 @@ const Project2 = () => {
                 </div>
             </div>
             <div className="row">
-            {projectsList.slice(0,8).map((item, i) => (
+            {projectsList.map((item, i) => (
                 <div key={i} className="col-lg-6">
                     <div className="agenko-project-item style-one mb-45 pf_fadeup">
                         <div className="thumbnail">
