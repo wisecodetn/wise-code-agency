@@ -43,7 +43,7 @@ const page = () => {
   const fetchBlogs = async (page: number = 1) => {
     try {
       setLoading(true);
-      const response = await fetch(`/api/blogs?page=${page}&limit=1`, {
+      const response = await fetch(`/api/blogs?page=${page}&limit=10`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
