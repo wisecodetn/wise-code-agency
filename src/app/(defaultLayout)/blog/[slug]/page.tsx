@@ -17,9 +17,9 @@ interface Blog {
 }
 
 interface PageProps {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
 async function getBlogBySlug(slug: string): Promise<Blog | null> {
@@ -65,52 +65,27 @@ async function getBlogBySlug(slug: string): Promise<Blog | null> {
     return null;
   } catch (error) {
     console.error('Direct MongoDB error:', error);
-    
-    // Fallback to API fetch
-    try {
-      const baseUrl = process.env.NODE_ENV === 'production' 
-        ? process.env.NEXT_PUBLIC_API_URL || 'https://your-domain.com'
-        : 'http://localhost:3000';
-      
-      const response = await fetch(`${baseUrl}/api/blogs?slug=${slug}`, {
-        cache: 'no-store',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-      
-      console.log('Fallback API fetch:', `${baseUrl}/api/blogs?slug=${slug}`);
-      console.log('Fallback response status:', response.status);
-      
-      if (response.ok) {
-        const data = await response.json();
-        console.log('Fallback response data:', data);
-        
-        if (data.success && data.data) {
-          return data.data;
-        }
-      } else {
-        console.error('Fallback API response not ok:', response.status, response.statusText);
-      }
-    } catch (fetchError) {
-      console.error('Fallback fetch error:', fetchError);
-    }
+    return null;
   }
-  
-  return null;
 }
 
 const page = async ({ params }: PageProps) => {
-  const blog = await getBlogBySlug(params.slug);
+  // Unwrap the params Promise
+  const { slug } = await params;
+  
+  console.log('Fetching blog for slug:', slug);
+
+  const blog = await getBlogBySlug(slug);
 
   if (!blog) {
+    console.log('Blog not found for slug:', slug);
     notFound();
   }
 
   return (
     <div>
       <BreadCumb
-        Title={blog.title}
+        Title="Blog Details"
         content="Wise Code empowers businesses with innovative strategies & creative agency solutions"
       />
       <BlogDetails blog={blog} />

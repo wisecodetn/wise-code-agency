@@ -77,7 +77,7 @@ export default function Nav({ setMobileToggle }) {
       </li> 
       
       <li>
-        <Link href="/blog-sidebar" onClick={() => setMobileToggle(false)}>
+        <Link href="/blog" onClick={() => setMobileToggle(false)}>
           Blog
         </Link>
       </li>
