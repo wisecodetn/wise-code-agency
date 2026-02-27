@@ -91,6 +91,7 @@ const Blog4: React.FC<Blog4Props> = ({ blogs, loading, error }) => {
                   <Image 
                     src={blog.image} 
                     alt={blog.title} 
+                    title={blog.title}
                     width={414} 
                     height={323} 
                   />

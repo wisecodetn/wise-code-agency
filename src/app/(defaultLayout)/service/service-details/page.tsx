@@ -10,7 +10,7 @@ const page = () => {
     <div>
              <BreadCumb
                 Title="Services Details"
-                content="Agenko empowers businesses with innovative strategies & creative agency solutions"
+                content="Wise Code empowers businesses with innovative strategies & creative agency solutions"
             ></BreadCumb>  
             <ServiceDetails></ServiceDetails> 
             <Process3></Process3> 

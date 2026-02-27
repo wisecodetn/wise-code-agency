@@ -75,6 +75,7 @@ const BlogDetails = ({ blog }: BlogDetailsProps) => {
                         "/assets/images/pages/blog/blog-single1.jpg"
                       }
                       alt={blog.title}
+                      title={blog.title}
                       width={777}
                       height={605}
                     />
@@ -90,18 +91,18 @@ const BlogDetails = ({ blog }: BlogDetailsProps) => {
                         {blog.date || new Date().toLocaleDateString()}
                       </span>
                     </div>
-                    <h4 className="post-title">{blog.title}</h4>
+                    {/* <h4 className="post-title">{blog.title}</h4> */}
                     <div dangerouslySetInnerHTML={{ __html: blog.content }} />
                    
                     <blockquote>
                       <div className="icon">
                         <i className="flaticon-inverted-commas"></i>
                       </div>
-                      <h4>
+                      <h1 style={{ fontSize: "36px", lineHeight: "normal"}}>
                         Wise Code Agency transformed our business with their
                         innovative strategies and dedicated support. Their team
                         understood{" "}
-                      </h4>
+                      </h1>
                      
                     </blockquote>
                    
@@ -142,7 +143,7 @@ const BlogDetails = ({ blog }: BlogDetailsProps) => {
             <div className="sidebar-widget-area">
               <div className="sidebar-widget sidebar-search-widget mb-30 pf_fadeup">
                 <div className="widget-content">
-                  <h4 className="sidebar-title">Search</h4>
+                  <span className="sidebar-title">Search</span>
                   <form>
                     <div className="form-group">
                       <input
@@ -162,7 +163,7 @@ const BlogDetails = ({ blog }: BlogDetailsProps) => {
 
               <div className="sidebar-widget sidebar-category-widget mb-30 pf_fadeup">
                 <div className="widget-content">
-                  <h4 className="sidebar-title">Categories</h4>
+                  <span className="sidebar-title">Categories</span>
                   <ul className="widget-nav">
                     <li>
                       <a href="#">
@@ -200,7 +201,7 @@ const BlogDetails = ({ blog }: BlogDetailsProps) => {
 
               <div className="sidebar-widget sidebar-post-widget mb-30 pf_fadeup">
                 <div className="widget-content">
-                  <h4 className="sidebar-title">Recent Post</h4>
+                  <span className="sidebar-title">Recent Post</span>
                   <ul className="recent-post-list">
                     <li className="post-thumbnail-content">
                       <Image
@@ -264,7 +265,7 @@ const BlogDetails = ({ blog }: BlogDetailsProps) => {
 
               <div className="sidebar-widget sidebar-tag-widget pf_fadeup mb-30">
                 <div className="widget-content">
-                  <h4 className="sidebar-title">Popular Tags</h4>
+                  <span className="sidebar-title">Popular Tags</span>
                   <div className="tagcloud">
                     <a href="#">Design</a>
                     <a href="#">Creative</a>

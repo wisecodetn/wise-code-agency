@@ -66,8 +66,9 @@ const Page = async ({ params }: PageProps) => {
   return (
     <div>
       <BreadCumb
-        Title="Blog Details"
-        content="Wise Code empowers businesses with innovative strategies & creative agency solutions"
+        Title={blog.title}
+        content={"Wise Code - " + blog.title}
+        PageTitle={"Blog Details"}
       />
       <BlogDetails blog={transformedBlog} />
     </div>

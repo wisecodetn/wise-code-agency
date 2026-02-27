@@ -6,8 +6,8 @@ import { dataconfig } from '../../dataconfig';
 const Footer = () => {
     return (
             <footer className="agenko-footer gray-dark pt-130 primary-black-bg">
-                    <div className="shape shape-one"><span><img className="rotate360" src="/assets/images/creative-agency/footer/element1.png" alt="Shape" /></span></div>
-                    <div className="shape shape-two"><span><img className="rotate360" src="/assets/images/creative-agency/footer/element2.png" alt="Shape" /></span></div>
+                    <div className="shape shape-one"><span><img className="rotate360" src="/assets/images/creative-agency/footer/element1.png" alt="Wise Code" title="Wise Code" width={151}   /></span></div>
+                    <div className="shape shape-two"><span><img className="rotate360" src="/assets/images/creative-agency/footer/element2.png" alt="Wise Code" title="Wise Code" width={151}   /></span></div>
                     <div className="shape shape-blur_one"><span></span></div>
                     <div className="shape shape-blur_two"><span></span></div>
                     
@@ -20,7 +20,7 @@ const Footer = () => {
                                         <div className="footer-content">
                                             <div className="footer-logo">
                                                  
-                                                <a href="#"> <Image src="/assets/images/creative-agency/logo/logo-main.png" alt="img" width={151} height={40}   /></a>
+                                                <a href="#"> <Image src="/assets/images/creative-agency/logo/logo-main.png" alt="Wise Code" title="Wise Code" width={151} height={40}   /></a>
                                             </div>
                                             <p>Wise Code creative digital agency delivering innovate web Development marketing.</p>
                                             <form>

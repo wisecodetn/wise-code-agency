@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-const BreadCumb = ({Title,content} : any ) => {
+const BreadCumb = ({Title,content,PageTitle} : any ) => {
 
     return (
 
@@ -19,7 +19,7 @@ const BreadCumb = ({Title,content} : any ) => {
                                 
                                 <div className="text-box d-flex align-items-center">
                                     <div className="icon">
-                                    <Image className="rotate360" src="/assets/images/pages/shape/star1.png" alt="img" width={84} height={90}   />
+                                    <Image className="rotate360" src="/assets/images/pages/shape/star1.png" alt="Wise Code" title="Wise Code" width={84} height={90}   />
                                     </div>
                                     <div className="text">
                                         <p>{content}</p>
@@ -30,7 +30,7 @@ const BreadCumb = ({Title,content} : any ) => {
                                 
                                 <ul className="breadcrumb-link">
                                     <li><Link href="/">Home</Link></li>
-                                    <li className="active">{Title}</li>
+                                    <li className="active">{PageTitle || Title}</li>
                                 </ul>
                             </div>
                         </div>
