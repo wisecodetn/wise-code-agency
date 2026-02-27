@@ -39,7 +39,7 @@ const BreadCumb = ({Title,content} : any ) => {
                 <div className="col-lg-3">
                     
                     <div className="circle-box float-xl-end text-center text-xl-end">
-                        <Image className="rotate360" src="/assets/images/pages/shape/circle-shape1.png" alt="img" width={135} height={135}   />
+                        <Image className="rotate360" src="/assets/wise-code/home/logo.png" alt="Wise Code" title="Wise Code" width={160} height={160}   />
                     </div>
                 </div>
             </div>

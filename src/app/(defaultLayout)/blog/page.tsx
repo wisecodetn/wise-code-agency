@@ -5,22 +5,34 @@ import BreadCumb from '../../Components/Common/BreadCumb';
 import React, { useState, useEffect } from 'react';
 
 interface Blog {
-  id: string;
+  _id: string;
   title: string;
   content: string;
-  image?: string;
-  author?: string;
-  date?: string;
-  comments?: number;
-  slug?: string;
   excerpt?: string;
+  featuredImage?: string;
+  author?: any;
+  createdAt?: string;
+  slug: string;
+  category?: {
+    _id: string;
+    name: string;
+    slug: string;
+    color: string;
+    icon: string;
+  };
+  tags?: Array<{
+    _id: string;
+    name: string;
+    slug: string;
+    color: string;
+    icon: string;
+  }>;
 }
 
 interface ApiResponse {
   success: boolean;
   data: Blog[];
-  fallback?: boolean;
-  message?: string;
+  error?: string;
   pagination?: {
     page: number;
     limit: number;
@@ -29,90 +41,46 @@ interface ApiResponse {
   };
 }
 
-const page = () => {
+const Page = () => {
   const [blogs, setBlogs] = useState<Blog[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [pagination, setPagination] = useState({
     page: 1,
-    limit: 1,
+    limit: 10,
     total: 0,
     totalPages: 0
   });
 
-  const fetchBlogs = async (page: number = 1) => {
+  const fetchBlogs = async (page: number = 1, category?: string, tag?: string) => {
     try {
       setLoading(true);
-      const response = await fetch(`/api/blogs?page=${page}&limit=10`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json',
-        },
-      });
-
-      if (response.ok) {
-        const responseData: ApiResponse = await response.json();
-        
-        if (responseData.success && responseData.data) {
-          setBlogs(responseData.data);
-          if (responseData.pagination) {
-            setPagination(responseData.pagination);
-          }
-          console.log('Successfully fetched from local MongoDB API');
-        } else {
-          throw new Error('Invalid response format');
-        }
-      } else {
+      setError(null);
+      
+      let url = `/api/blogs?page=${page}&limit=10`;
+      if (category) url += `&category=${category}`;
+      if (tag) url += `&tag=${tag}`;
+      
+      const response = await fetch(url);
+      
+      if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
-    } catch (err) {
-      console.error('Failed to fetch from local API:', err);
       
-      // Fallback to mock data if local API fails
-      const mockBlogs: Blog[] = [
-        {
-          id: '1',
-          title: 'Web Development Best Practices for 2024',
-          content: 'Discover the latest trends and best practices in modern web development including React, Next.js, and responsive design principles.',
-          author: 'Wise Code Team',
-          date: new Date().toLocaleDateString(),
-          comments: 5,
-          slug: 'web-development-best-practices'
-        },
-        {
-          id: '2',
-          title: 'Digital Marketing Strategies That Work',
-          content: 'Learn effective digital marketing strategies that drive real results for businesses in today\'s competitive landscape.',
-          author: 'Marketing Team',
-          date: new Date().toLocaleDateString(),
-          comments: 8,
-          slug: 'digital-marketing-strategies'
-        },
-        {
-          id: '3',
-          title: 'E-Commerce Platform Development Guide',
-          content: 'Complete guide to building scalable e-commerce platforms with modern technologies and user experience best practices.',
-          author: 'Development Team',
-          date: new Date().toLocaleDateString(),
-          comments: 12,
-          slug: 'ecommerce-platform-development'
+      const responseData: ApiResponse = await response.json();
+      
+      if (responseData.success && responseData.data) {
+        setBlogs(responseData.data);
+        if (responseData.pagination) {
+          setPagination(responseData.pagination);
         }
-      ];
-      
-      // For mock data, simulate pagination
-      const startIndex = (page - 1) * 1;
-      const endIndex = startIndex + 1;
-      const paginatedBlogs = mockBlogs.slice(startIndex, endIndex);
-      
-      setBlogs(paginatedBlogs);
-      setPagination({
-        page,
-        limit: 1,
-        total: mockBlogs.length,
-        totalPages: Math.ceil(mockBlogs.length / 1)
-      });
-      console.warn('Using fallback mock data due to local API failure');
+      } else {
+        throw new Error(responseData.error || 'Invalid response format');
+      }
+    } catch (err) {
+      console.error('Failed to fetch blogs:', err);
+      setError(err instanceof Error ? err.message : 'Failed to fetch blogs');
+      setBlogs([]);
     } finally {
       setLoading(false);
     }
@@ -128,13 +96,32 @@ const page = () => {
     }
   };
 
+  // Transform blog data for Blog4 component
+  const transformedBlogs = blogs.map(blog => ({
+    id: blog._id,
+    title: blog.title,
+    content: blog.content,
+    excerpt: blog.excerpt,
+    author: blog.author?.name || 'Wise Code Team',
+    date: blog.createdAt ? new Date(blog.createdAt).toLocaleDateString() : new Date().toLocaleDateString(),
+    comments: 0, // You can add comment count if available
+    slug: blog.slug,
+    image: blog.featuredImage 
+      ? (blog.featuredImage.startsWith('http') 
+          ? blog.featuredImage 
+          : `https://wise-code-agency.vercel.app${blog.featuredImage}`)
+      : 'https://wise-code-agency.vercel.app/assets/images/pages/blog/blog1.jpg',
+    category: blog.category?.name || 'General',
+    tags: blog.tags?.map(tag => tag.name) || []
+  }));
+
   return (
     <div>
       <BreadCumb
         Title="Our Blog"
         content="Wise Code empowers businesses with innovative strategies & creative agency solutions"
       />
-      <Blog4 blogs={blogs} loading={loading} error={error} />
+      <Blog4 blogs={transformedBlogs} loading={loading} error={error} />
       
       {/* Pagination */}
       {!loading && !error && pagination.totalPages > 1 && (
@@ -201,4 +188,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

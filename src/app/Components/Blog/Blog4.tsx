@@ -27,7 +27,7 @@ const Blog4: React.FC<Blog4Props> = ({ blogs, loading, error }) => {
     if (blogs && blogs.length > 0) {
       const updatedBlogs = blogs.map((blog) => ({
         ...blog,
-        image: `https://wise-code-agency.vercel.app${blog.image}`
+        image: `${blog.image}`
       }));
       setBlogsWithImages(updatedBlogs);
     }

@@ -24,28 +24,10 @@ const BlogDetails = ({ blog }: BlogDetailsProps) => {
   const [blogWithImage, setBlogWithImage] = useState<Blog>(blog);
 
   useEffect(() => {
-    let imageUrl = blog.image;
-
-    // If image is a relative path starting with /uploads/, use external domain
-    if (blog.image && blog.image.startsWith("/uploads/")) {
-      imageUrl = `https://wise-code-agency.vercel.app${blog.image}`;
-    } else if (blog.image && !blog.image.startsWith("http")) {
-      // If it's a relative path without /uploads/, use external domain with ID
-      imageUrl = `https://wise-code-agency.vercel.app/${blog.id}.jpg`;
-    }
-    // If image already has full http URL, keep it as is
-
-    console.log(
-      "BlogDetails - Blog ID:",
-      blog.id,
-      "Original image:",
-      blog.image,
-      "Final URL:",
-      imageUrl,
-    );
+    // For static data, use the image as-is since we're providing local paths
     setBlogWithImage({
       ...blog,
-      image: imageUrl,
+      image: blog.image || "/assets/images/pages/blog/blog-single1.jpg",
     });
   }, [blog]);
 

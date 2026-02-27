@@ -67,7 +67,7 @@ export default function RootLayout({ children } : any ) {
     <html lang="en">
       <head>
         <meta name="author" content="Wise Code" />
-        <link rel="icon" href="/favicon.png" sizes="any" />
+        <link rel="icon" href="/favicon.ico" sizes="any" />
       </head>
       <body className={`${source_sans.variable} ${roboto.variable}`}>
         {children}

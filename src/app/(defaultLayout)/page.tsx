@@ -10,20 +10,66 @@ import Brand2 from '../Components/Brand/Brand2';
 import Blog2 from '../Components/Blog/Blog2';
 import HeroBanner3 from '../Components/HeroBanner/HeroBanner3';
 
-const page = () => {
+interface Blog {
+  id: string;
+  title: string;
+  content: string;
+  image?: string;
+  author?: string;
+  date?: string;
+  comments?: number;
+  slug?: string;
+  excerpt?: string;
+  tags?: string[];
+  category?: string;
+}
+
+async function getLatestBlogs(): Promise<Blog[]> {
+  try {
+    const baseUrl = process.env.NODE_ENV === 'production' 
+      ? process.env.NEXT_PUBLIC_API_URL || 'https://your-domain.com'
+      : 'http://localhost:3000';
+    
+    const response = await fetch(`${baseUrl}/api/latest-blogs?limit=3`, {
+      cache: 'no-store',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    
+ 
+    
+    if (response.ok) {
+      const data = await response.json();
+      
+      if (data.success) {
+        return data.data;
+      } else {
+        console.error('API returned error:', data.message);
+        return [];
+      }
+    } else {
+      console.error('API response not ok:', response.status, response.statusText);
+      return [];
+    }
+  } catch (error) {
+    console.error('Error fetching latest blogs:', error);
+    return [];
+  }
+}
+
+const page = async () => {
+    const latestBlogs = await getLatestBlogs();
+
     return (
         <div>
             <HeroBanner3></HeroBanner3>
             <About1></About1>
             <Services2></Services2>
             <Project2></Project2>
-            {/* <WhoWeAre></WhoWeAre> */}
             <Process2></Process2>
-            {/* <Testimonial2></Testimonial2> */}
             <Faq1></Faq1>
-            {/* <Team2></Team2> */}
-            {/* <Brand2></Brand2>   */}
-            <Blog2></Blog2>          
+            <Blog2 blogs={latestBlogs} />          
         </div>
     );
 };

@@ -3,17 +3,34 @@ import BreadCumb from '../../../Components/Common/BreadCumb';
 import { notFound } from 'next/navigation';
 
 interface Blog {
-  id: string;
+  _id: string;
   title: string;
   content: string;
-  image?: string;
-  author?: string;
-  date?: string;
-  comments?: number;
-  slug?: string;
   excerpt?: string;
-  tags?: string[];
-  category?: string;
+  featuredImage?: string;
+  author?: any;
+  createdAt?: string;
+  slug: string;
+  category?: {
+    _id: string;
+    name: string;
+    slug: string;
+    color: string;
+    icon: string;
+  };
+  tags?: Array<{
+    _id: string;
+    name: string;
+    slug: string;
+    color: string;
+    icon: string;
+  }>;
+}
+
+interface ApiResponse {
+  success: boolean;
+  data?: Blog;
+  error?: string;
 }
 
 interface PageProps {
@@ -24,63 +41,62 @@ interface PageProps {
 
 async function getBlogBySlug(slug: string): Promise<Blog | null> {
   try {
-    // Direct MongoDB connection for server-side
-    const { MongoClient } = require('mongodb');
-    const uri = process.env.MONGODB_URI;
-    
-    const client = new MongoClient(uri);
-    await client.connect();
-    const db = client.db('wisecode');
-    const collection = db.collection('blog_posts');
-    
-    console.log('Direct MongoDB query for slug:', slug);
-    
-    const blog = await collection.findOne({ 
-      slug: slug, 
-      status: "published" 
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'}/api/blogs/${slug}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      cache: 'no-store', // Ensure fresh data
     });
-    
-    console.log('Direct MongoDB result:', blog);
-    
-    if (blog) {
-      const formattedBlog = {
-        id: blog._id.toString(),
-        title: blog.title || 'Untitled Blog',
-        content: blog.content || blog.description || 'No content available',
-        author: typeof blog.author === 'string' ? blog.author : blog.author?.name || 'Wise Code Team',
-        date: blog.date || blog.createdAt?.toLocaleDateString() || new Date().toLocaleDateString(),
-        comments: blog.comments || 0,
-        slug: blog.slug || blog._id.toString(),
-        image: blog.image || blog.featuredImage || '/assets/images/pages/blog/blog1.jpg',
-        excerpt: blog.excerpt || blog.content?.substring(0, 150) + '...' || 'No excerpt available',
-        tags: blog.tags || [],
-        category: blog.category || 'General'
-      };
-      
-      await client.close();
-      return formattedBlog;
+
+    if (!response.ok) {
+      if (response.status === 404) {
+        return null;
+      }
+      throw new Error(`HTTP error! status: ${response.status}`);
     }
+
+    const responseData: ApiResponse = await response.json();
     
-    await client.close();
-    return null;
+    if (responseData.success && responseData.data) {
+      return responseData.data;
+    } else {
+      throw new Error(responseData.error || 'Invalid response format');
+    }
   } catch (error) {
-    console.error('Direct MongoDB error:', error);
+    console.error('Failed to fetch blog by slug:', error);
     return null;
   }
 }
 
-const page = async ({ params }: PageProps) => {
+const Page = async ({ params }: PageProps) => {
   // Unwrap the params Promise
   const { slug } = await params;
-  
-  console.log('Fetching blog for slug:', slug);
 
   const blog = await getBlogBySlug(slug);
 
   if (!blog) {
-    console.log('Blog not found for slug:', slug);
     notFound();
   }
+
+  // Transform blog data for BlogDetails component
+  const transformedBlog = {
+    id: blog._id,
+    title: blog.title,
+    content: blog.content,
+    excerpt: blog.excerpt,
+    author: blog.author?.name || 'Wise Code Team',
+    date: blog.createdAt ? new Date(blog.createdAt).toLocaleDateString() : new Date().toLocaleDateString(),
+    comments: 0, // You can add comment count if available
+    slug: blog.slug,
+    image: blog.featuredImage 
+      ? (blog.featuredImage.startsWith('http') 
+          ? blog.featuredImage 
+          : `https://wise-code-agency.vercel.app${blog.featuredImage}`)
+      : 'https://wise-code-agency.vercel.app/assets/images/pages/blog/blog-single1.jpg',
+    tags: blog.tags?.map(tag => tag.name) || [],
+    category: blog.category?.name || 'General'
+  };
 
   return (
     <div>
@@ -88,9 +104,9 @@ const page = async ({ params }: PageProps) => {
         Title="Blog Details"
         content="Wise Code empowers businesses with innovative strategies & creative agency solutions"
       />
-      <BlogDetails blog={blog} />
+      <BlogDetails blog={transformedBlog} />
     </div>
   );
 };
 
-export default page;
+export default Page;
