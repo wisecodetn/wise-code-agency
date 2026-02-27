@@ -1,6 +1,7 @@
 import BlogDetails from '../../../Components/BlogDetails/BlogDetails';
 import BreadCumb from '../../../Components/Common/BreadCumb';
 import { notFound } from 'next/navigation';
+import { getBlogBySlug } from '../../../data/blogs';
 
 interface Blog {
   _id: string;
@@ -27,46 +28,10 @@ interface Blog {
   }>;
 }
 
-interface ApiResponse {
-  success: boolean;
-  data?: Blog;
-  error?: string;
-}
-
 interface PageProps {
   params: Promise<{
     slug: string;
   }>;
-}
-
-async function getBlogBySlug(slug: string): Promise<Blog | null> {
-  try {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'}/api/blogs/${slug}`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      cache: 'no-store', // Ensure fresh data
-    });
-
-    if (!response.ok) {
-      if (response.status === 404) {
-        return null;
-      }
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-
-    const responseData: ApiResponse = await response.json();
-    
-    if (responseData.success && responseData.data) {
-      return responseData.data;
-    } else {
-      throw new Error(responseData.error || 'Invalid response format');
-    }
-  } catch (error) {
-    console.error('Failed to fetch blog by slug:', error);
-    return null;
-  }
 }
 
 const Page = async ({ params }: PageProps) => {
@@ -81,7 +46,7 @@ const Page = async ({ params }: PageProps) => {
 
   // Transform blog data for BlogDetails component
   const transformedBlog = {
-    id: blog._id,
+    id: blog._id.toString(),
     title: blog.title,
     content: blog.content,
     excerpt: blog.excerpt,
