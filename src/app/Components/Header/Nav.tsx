@@ -1,7 +1,11 @@
 import Link from 'next/link';
 import DropDown from './DropDown';
+import { servicesList } from '../../data/services';
 
 export default function Nav({ setMobileToggle }) {
+  // Filter out "Our Services" from the list
+  const filteredServices = servicesList.filter(service => service.slug !== 'our-services');
+
   return (
     <ul className="cs_nav_list fw-medium">
       <li>
@@ -26,53 +30,20 @@ export default function Nav({ setMobileToggle }) {
                 Our Services
               </Link>
             </li>
-            <li>
-              <Link href="/service/service-details" onClick={() => setMobileToggle(false)}>
-                CMS/ CRM Development
-              </Link>
-            </li>
-            <li>
-              <Link href="/service/service-details" onClick={() => setMobileToggle(false)}>
-                Custom Development
-              </Link>
-            </li>
-            <li>
-              <Link href="/service/service-details" onClick={() => setMobileToggle(false)}>
-                E-Commerce
-              </Link>
-            </li>
-            <li>
-              <Link href="/service/service-details" onClick={() => setMobileToggle(false)}>
-                Web & App Design
-              </Link>
-            </li>
-            <li>
-              <Link href="/service/service-details" onClick={() => setMobileToggle(false)}>
-                Digital Marketing
-              </Link>
-            </li>
-            <li>
-              <Link href="/service/service-details" onClick={() => setMobileToggle(false)}>
-                SEO Optimization
-              </Link>
-            </li>
-            <li>
-              <Link href="/service/service-details" onClick={() => setMobileToggle(false)}>
-                Branding
-              </Link>
-            </li>
-            <li>
-              <Link href="/service/service-details" onClick={() => setMobileToggle(false)}>
-                Hosting
-              </Link>
-            </li>
+            {filteredServices.map((service, index) => (
+              <li key={index}>
+                <Link href={`/service/${service.slug}`} onClick={() => setMobileToggle(false)}>
+                  {service.name}
+                </Link>
+              </li>
+            ))}
           </ul>
         </DropDown>
       </li>
 
       <li>
         <Link href="/project" onClick={() => setMobileToggle(false)}>
-        Project
+          Project
         </Link>
       </li> 
       

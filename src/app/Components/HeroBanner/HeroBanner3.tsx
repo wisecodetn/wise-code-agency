@@ -19,6 +19,7 @@ const HeroBanner3 = () => {
 
         <div className="hero-image-box text-center pf_fadeup">
           <Image
+          preload={true}
             src="/assets/wise-code/home/hero.jpg"
             alt="Wise Code Digital Agency Hero Image"
             title="Wise Code Digital Agency Hero Image"

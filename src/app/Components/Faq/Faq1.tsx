@@ -42,10 +42,7 @@ const Faq1 = () => {
                                         <h2>Got Questions? We’ve Got Answers</h2>
                                     </div>
                                 </div>
-                                <div className="col-lg-5">
-                                   
-                                    <div className="faq-big-text">Faq’s</div>
-                                </div>
+                               
                             </div>
                             <div className="row">
                                 <div className="col-xl-6">

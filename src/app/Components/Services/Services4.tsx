@@ -2,14 +2,25 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 
-const Services4 = () => {
+interface Service {
+  name: string;
+  slug: string;
+  description: string;
+  keywords: string[];
+  process: {
+    step: number;
+    title: string;
+    description: string;
+    image: string;
+  }[];
+}
 
-    const serviceContent = [
-        {img:'/assets/images/pages/service/card-img1.jpg', title:'Development', subTitle:'Web Development', content:'We innovative development solutions, combining technology and creativity to build efficient and scalable, and user-friendly digital platforms.'},
-        {img:'/assets/images/pages/service/card-img2.jpg', title:'UI/UX Design', subTitle:'Mobile Apps Design', content:'We innovative development solutions, combining technology and creativity to build efficient and scalable, and user-friendly digital platforms.'},
-        {img:'/assets/images/pages/service/card-img3.jpg', title:'Graphics', subTitle:'Bradning Design', content:'We innovative development solutions, combining technology and creativity to build efficient and scalable, and user-friendly digital platforms.'},
-        {img:'/assets/images/pages/service/card-img4.jpg', title:'Marketing', subTitle:'SEO Marketing', content:'We innovative development solutions, combining technology and creativity to build efficient and scalable, and user-friendly digital platforms.'},
-      ]; 
+interface Services4Props {
+  services?: Service[];
+}
+
+const Services4 = ({ services }: Services4Props) => {
+    
 
     return (
         <section className="agk-services">
@@ -25,20 +36,18 @@ const Services4 = () => {
                 </div>
                 <div className="row">
                     <div className="col-lg-12">
-                    {serviceContent.map((item, i) => (
+                    {services?.map((item, i) => (
                         <div key={i} className="agenko-card-item style-two mb-10 pf_fadeup">
                             <div className="thumbnail">
-                            <Image src={item.img} alt="img" width={320} height={120}   />
+                            <Image src={"/logo.png"} alt={item.name} title={item.name} width={80} height={80} className="img-fluid"  />
                             </div>
                             <div className="card-title">
-                                <h2><Link href="/service/service-details">{item.title}</Link></h2>
-                                <h4>{item.subTitle}</h4>
+                                <h2><Link href={`/service/${item.slug}`}>{item.name}</Link></h2>
+                                <h4>{item.description}</h4>
                             </div>
-                            <div className="content">
-                                <p>{item.content}</p>
-                            </div>
+                            
                         </div>
-                        ))}
+                    ))}
                         
                     </div>
                 </div>
