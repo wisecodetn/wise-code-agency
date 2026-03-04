@@ -1,6 +1,4 @@
-import Brand4 from '../../../Components/Brand/Brand4';
 import BreadCumb from '../../../Components/Common/BreadCumb';
-import Pricing1 from '../../../Components/Pricing/Pricing1';
 import Process3 from '../../../Components/Process/Process3';
 import ServiceDetails from '../../../Components/ServiceDetails/ServiceDetails';
 import React from 'react';

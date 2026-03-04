@@ -1,7 +1,20 @@
 import { MongoClient, ObjectId } from 'mongodb';
 
 const uri = process.env.MONGODB_URI || 'mongodb://localhost:27017/wisecode';
-const client = new MongoClient(uri);
+
+// Global variable to store the MongoDB client
+let client: MongoClient | null = null;
+let clientPromise: Promise<MongoClient>;
+
+declare global {
+  var _mongoClientPromise: Promise<MongoClient> | undefined;
+}
+
+if (!global._mongoClientPromise) {
+  client = new MongoClient(uri);
+  global._mongoClientPromise = client.connect();
+}
+clientPromise = global._mongoClientPromise;
 
 interface Blog {
   _id: ObjectId;
@@ -31,7 +44,7 @@ interface Blog {
 // Get single blog by slug
 export async function getBlogBySlug(slug: string): Promise<Blog | null> {
   try {
-    await client.connect();
+    const client = await clientPromise;
     const database = client.db('wisecode');
 
     // Trouver l'article par slug avec statut publié uniquement
@@ -109,9 +122,8 @@ export async function getBlogBySlug(slug: string): Promise<Blog | null> {
   } catch (error) {
     console.error('Erreur lors de la récupération de l\'article:', error);
     return null;
-  } finally {
-    await client.close();
   }
+  // Note: Don't close the client here - let the connection pool manage it
 }
 
 // Get multiple blogs with pagination and filters
@@ -134,7 +146,7 @@ export async function getBlogs(options: {
     const { page = 1, limit = 10, search = '', category = '', tag = '' } = options;
     const skip = (page - 1) * limit;
 
-    await client.connect();
+    const client = await clientPromise;
     const database = client.db('wisecode');
 
     // Construire le filtre - toujours publié uniquement
@@ -280,7 +292,6 @@ export async function getBlogs(options: {
         totalPages: 0
       }
     };
-  } finally {
-    await client.close();
   }
+  // Note: Don't close the client here - let the connection pool manage it
 }
