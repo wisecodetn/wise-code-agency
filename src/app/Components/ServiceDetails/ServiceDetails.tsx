@@ -27,7 +27,7 @@ const ServiceDetails = ({ service }: ServiceDetailsProps) => {
                                 
                                 <div className="agenko-iamge-box mb-70 pf_zoomIn">
                                     <div className="agenko-image">
-                                    <Image src={service.image} alt={service.name} title={service.name} width={1290} height={500}   />
+                                    <Image src={service.image} alt={`${service.name} - Service Details`} title={`${service.name} - Wise Code Service`} width={1290} height={500}   />
                                     </div>
                                 </div>
                             </div>

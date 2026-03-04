@@ -31,7 +31,7 @@ const Services2 = () => {
                                             <p>Professional <span>custom web development</span> services creating responsive, fast-loading websites with modern frameworks like React and Next.js to enhance user experience and drive business growth.</p>
                                         </div>
                                         <div className="card-button">
-                                            <Link href="/service/service-details" className="theme-btn style-one">
+                                            <Link href="/service/custom-development" className="theme-btn style-one">
                                                 <span className="text-flip">
                                                     <span className="text">LEARN MORE</span>
                                                     <span className="text">LEARN MORE</span>
@@ -51,7 +51,7 @@ const Services2 = () => {
                                             <p>Strategic <span>digital marketing and SEO</span> solutions to increase your online visibility, drive targeted traffic, and improve search rankings with data-driven campaigns and conversion optimization.</p>
                                         </div>
                                         <div className="card-button">
-                                            <Link href="/service/service-details" className="theme-btn style-one">
+                                            <Link href="/service/seo-optimization" className="theme-btn style-one">
                                                 <span className="text-flip">
                                                     <span className="text">LEARN MORE</span>
                                                     <span className="text">LEARN MORE</span>
@@ -71,7 +71,7 @@ const Services2 = () => {
                                             <p>Complete <span>e-commerce development</span> with secure payment gateways, inventory management, and user-friendly shopping experiences to boost online sales and customer retention.</p>
                                         </div>
                                         <div className="card-button">
-                                            <Link href="/service/service-details" className="theme-btn style-one">
+                                            <Link href="/service/ecommerce" className="theme-btn style-one">
                                                 <span className="text-flip">
                                                     <span className="text">LEARN MORE</span>
                                                     <span className="text">LEARN MORE</span>

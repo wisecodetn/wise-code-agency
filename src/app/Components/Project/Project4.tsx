@@ -1,5 +1,6 @@
 import React from 'react';
 import ProjectCard3 from '../Card/ProjectCard3';
+import { projectsList } from '../../data/projects';
 
 const Project4 = () => {
     return (
@@ -8,66 +9,30 @@ const Project4 = () => {
                 <div className="row">
                     <div className="col-lg-6">
                         <div className="row">
-                            <div className="col-lg-12">
-                                <ProjectCard3
-                                    img="/assets/images/pages/project/project1.jpg"
-                                    title="Web Design"
-                                    content="Creative Javanese a Lead Designer & Mobile"
-                                ></ProjectCard3>
-                            </div>
-                            <div className="col-lg-6">
-                            <ProjectCard3
-                                    img="/assets/images/pages/project/project2.jpg"
-                                    title="Web Design"
-                                    content="Creative Javanese a Lead Designer & Mobile"
-                                ></ProjectCard3>
-                            </div>
-                            <div className="col-lg-6">
-                            <ProjectCard3
-                                    img="/assets/images/pages/project/project3.jpg"
-                                    title="Web Design"
-                                    content="Creative Javanese a Lead Designer & Mobile"
-                            ></ProjectCard3>
-                            </div>
-                            <div className="col-lg-12">
-                            <ProjectCard3
-                                    img="/assets/images/pages/project/project4.jpg"
-                                    title="Web Design"
-                                    content="Creative Javanese a Lead Designer & Mobile"
-                            ></ProjectCard3>                               
-                            </div>
+                            {projectsList.slice(0, 4).map((project, index) => (
+                                <div key={project.id} className={index === 0 || index === 3 ? "col-lg-12" : "col-lg-6"}>
+                                    <ProjectCard3
+                                        img={project.image}
+                                        title={project.category}
+                                        content={project.title}
+                                        slug={project.slug}
+                                    />
+                                </div>
+                            ))}
                         </div>
                     </div>
                     <div className="col-lg-6">
                         <div className="row">
-                            <div className="col-lg-6">
-                            <ProjectCard3
-                                    img="/assets/images/pages/project/project5.jpg"
-                                    title="Web Design"
-                                    content="Creative Javanese a Lead Designer & Mobile"
-                            ></ProjectCard3>                                 
-                            </div>
-                            <div className="col-lg-6">
-                            <ProjectCard3
-                                    img="/assets/images/pages/project/project6.jpg"
-                                    title="Web Design"
-                                    content="Creative Javanese a Lead Designer & Mobile"
-                            ></ProjectCard3>                                
-                            </div>
-                            <div className="col-lg-12">
-                            <ProjectCard3
-                                    img="/assets/images/pages/project/project7.jpg"
-                                    title="Web Design"
-                                    content="Creative Javanese a Lead Designer & Mobile"
-                            ></ProjectCard3>                                 
-                            </div>
-                            <div className="col-lg-12">
-                            <ProjectCard3
-                                    img="/assets/images/pages/project/project8.jpg"
-                                    title="Web Design"
-                                    content="Creative Javanese a Lead Designer & Mobile"
-                            ></ProjectCard3>                                 
-                            </div>
+                            {projectsList.slice(4, 9).map((project, index) => (
+                                <div key={project.id} className={index === 2 || index === 4 ? "col-lg-12" : "col-lg-6"}>
+                                    <ProjectCard3
+                                        img={project.image}
+                                        title={project.category}
+                                        content={project.title}
+                                        slug={project.slug}
+                                    />
+                                </div>
+                            ))}
                         </div>
                     </div>
                 </div>

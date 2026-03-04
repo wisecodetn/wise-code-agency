@@ -6,7 +6,7 @@ import Link from 'next/link';
 const Faq2 = () => {
 
        const faqContent = [
-            {title:'What services does your agency provide?', content:'We build websites using content management systems (CMS) like WordPress, Shopify, or custom CMS, which allows you to easily update your content, add pages, and make changes without any coding knowledge.'},
+            {title:'What services does Wise Code provide?', content:'We build websites using content management systems (CMS) like WordPress, Shopify, or custom CMS, which allows you to easily update your content, add pages, and make changes without any coding knowledge.'},
             {title:'Can I update the website content myself?', content:'We build websites using content management systems (CMS) like WordPress, Shopify, or custom CMS, which allows you to easily update your content, add pages, and make changes without any coding knowledge.'},
             {title:'How does the web design process work?', content:'We build websites using content management systems (CMS) like WordPress, Shopify, or custom CMS, which allows you to easily update your content, add pages, and make changes without any coding knowledge.'},
             {title:' How long will my project take to complete?', content:'We build websites using content management systems (CMS) like WordPress, Shopify, or custom CMS, which allows you to easily update your content, add pages, and make changes without any coding knowledge.'},
